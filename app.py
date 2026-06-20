@@ -81,6 +81,28 @@ CUSTOM_CSS = """
     line-height: 1.35;
 }
 
+/* 改善前端卡片對齊 - 讓卡片和按鈕垂直對齊 */
+div[data-testid="column"] {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 200px;
+}
+
+.category-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 160px;
+    box-sizing: border-box;
+}
+
+[data-testid="stVerticalBlock"] button {
+    margin-top: auto;
+    width: 100%;
+}
+
 /* 聊天室標頭 */
 .chat-header {
     background: linear-gradient(90deg, #F5EDE0 0%, #F8F1E3 100%);
@@ -251,39 +273,6 @@ def get_yijing_response(category_key: str, question: str, name: str, preference:
     return f"{response}\n\n**小提醒**：{tip}{closing}"
 
 
-def build_grok_prompt(category_key: str, question: str, name: str, preference: str) -> str:
-    """為 SuperGrok 產生高品質提示詞（利用你的訂閱，不額外花錢）"""
-    cat = CATEGORIES[category_key]
-    cat_name = cat["name"]
-    is_traditional = preference == "傳統"
-
-    style_instruction = (
-        "請用古典、典雅、帶有易經原文引用與象徵意義的方式解讀。"
-        if is_traditional else
-        "請用現代白話、務實且有同理心的方式解讀，並給出具體可執行的建議。"
-    )
-
-    prompt = f"""你是一位精通《易經》的資深顧問，名字叫「洞察易生」。
-
-用戶資訊：
-- 姓名：{name}
-- 解讀偏好：{preference}
-- 詢問類別：{cat_name}
-
-用戶問題：
-「{question}」
-
-請依照以下原則回應：
-1. {style_instruction}
-2. 結合「{cat_name}」這個主題脈絡來解讀。
-3. 可以適度引用相關卦象（如乾、坤、咸、恒、屯、蒙、既濟、未濟等），但不要強行起卦。
-4. 給出有智慧、有同理心、且實用的建議。
-5. 最後給 1-2 句簡短的行動提醒。
-6. 語氣溫和、有儀式感，但不要過於玄。
-
-請直接給出回應，不要多餘的說明。"""
-    return prompt
-
 # ====================== 側邊欄：個人檔案 ======================
 with st.sidebar:
     st.markdown("### 個人檔案")
@@ -327,9 +316,6 @@ with st.sidebar:
         st.markdown("**目前在首頁**")
 
     st.divider()
-
-    st.markdown("**💡 解讀方式建議**")
-    st.caption("有 SuperGrok 訂閱的話，強烈建議使用「SuperGrok 專業解讀」，品質明顯更好，且不額外花錢。")
 
     st.caption("洞察易生的經歷\n完全免費・無限使用")
 
@@ -451,82 +437,24 @@ def show_chatroom(category_key: str):
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    # 聊天輸入
+    # 聊天輸入 - 直接使用傳統易經智慧回應
     if prompt := st.chat_input("誠心提出你的問題..."):
         # 先儲存用戶問題
         st.session_state[msg_key].append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
 
-        # ========== 兩種解讀方式選擇 ==========
-        st.markdown("**選擇解讀方式**")
-
-        col1, col2 = st.columns(2)
-
-        with col1:
-            if st.button("⚡ 使用內建快速解讀", key=f"quick_{len(st.session_state[msg_key])}", use_container_width=True):
-                response = get_yijing_response(
-                    category_key,
-                    prompt,
-                    st.session_state.user_name,
-                    st.session_state.preference
-                )
-                with st.chat_message("assistant"):
-                    st.markdown(response)
-                st.session_state[msg_key].append({"role": "assistant", "content": response})
-                st.toast("已使用內建解讀", icon="⚡")
-                st.rerun()
-
-        with col2:
-            if st.button("✨ 使用 SuperGrok 專業解讀（推薦）", key=f"grok_{len(st.session_state[msg_key])}", use_container_width=True, type="primary"):
-                st.session_state[f"pending_grok_prompt_{category_key}"] = prompt
-                st.rerun()
-
-    # 如果有 pending 的 Grok prompt，顯示專用介面
-    pending_key = f"pending_grok_prompt_{category_key}"
-    if pending_key in st.session_state and st.session_state[pending_key]:
-        current_question = st.session_state[pending_key]
-        st.divider()
-
-        st.markdown("### ✨ 準備發送給 SuperGrok")
-
-        full_prompt = build_grok_prompt(
+        response = get_yijing_response(
             category_key,
-            current_question,
+            prompt,
             st.session_state.user_name,
             st.session_state.preference
         )
-
-        st.code(full_prompt, language="text")
-
-        col_a, col_b, col_c = st.columns(3)
-
-        with col_a:
-            st.caption("請從上方程式碼區塊手動複製")
-
-        with col_b:
-            grok_url = "https://grok.x.ai"
-            st.link_button("🚀 開啟 SuperGrok 聊天", grok_url, use_container_width=True)
-
-        with col_c:
-            if st.button("🔙 取消", use_container_width=True):
-                del st.session_state[pending_key]
-                st.rerun()
-
-        st.markdown("---")
-        st.markdown("**請把 SuperGrok 的回覆貼在下方：**")
-
-        pasted = st.text_area("貼上 Grok 的完整回應", height=160, key="pasted_grok_reply")
-
-        if st.button("✅ 採用此回答並儲存", type="primary", disabled=not pasted.strip()):
-            full_reply = pasted.strip()
-            with st.chat_message("assistant"):
-                # Use st.text to avoid potential markdown rendering issues from pasted content
-                st.text(full_reply)
-            st.session_state[msg_key].append({"role": "assistant", "content": full_reply})
-            del st.session_state[pending_key]
-            st.toast("已儲存 SuperGrok 的解讀", icon="📖")
-            st.rerun()
+        with st.chat_message("assistant"):
+            st.markdown(response)
+        st.session_state[msg_key].append({"role": "assistant", "content": response})
+        st.toast("易經顧問已回應")
+        # Streamlit 會自動 rerun 處理聊天輸入
 
 # ====================== 路由 ======================
 if st.session_state.current_category is None:
@@ -583,12 +511,11 @@ with st.expander("📌 關於資料儲存與隱私（重要）", expanded=False)
     - 你的姓名、偏好設定、聊天記錄 → **只存在你自己的瀏覽器裡**（使用 `sessionStorage` / 記憶體）
     - 關閉分頁或清除瀏覽資料後，記錄就會消失
     - **沒有上傳到任何伺服器永久保存**
-    - 使用 SuperGrok 解讀時，真正的回答是你在 grok.x.ai 產生的，App 只負責幫你整理格式
     
     **這代表什麼？**
     - 非常注重隱私（別人看不到你的問題）
     - 但同時**無法跨裝置同步**、**無法長期保存歷史**
-    - 如果想長期保存，建議使用「匯出對話」功能（之後會加上）
+    - 如果想長期保存，建議使用側邊欄的「匯出目前分區對話」功能下載存檔。
     
     這是公開分享版本的設計。如果你之後想要登入 + 雲端儲存，我可以再幫你加上。
     """)
