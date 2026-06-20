@@ -44,13 +44,6 @@ CUSTOM_CSS = """
     letter-spacing: 2px;
 }
 
-.subtitle {
-    text-align: center;
-    color: var(--accent-earth);
-    font-size: 1.05rem;
-    margin-bottom: 1.8rem;
-}
-
 /* 卡片設計 */
 .category-card {
     background: var(--card-bg);
@@ -343,7 +336,6 @@ with st.sidebar:
 def show_homepage():
     """顯示首頁"""
     st.markdown('<div class="main-title">洞察易生的經歷</div>', unsafe_allow_html=True)
-    st.markdown('<div class="subtitle">問心 · 觀象 · 得道</div>', unsafe_allow_html=True)
 
     # 歡迎與說明
     with st.container():
