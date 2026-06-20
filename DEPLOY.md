@@ -1,4 +1,4 @@
-# 恆易 · 坤澤 - 部署與發佈指南
+# 洞察易生的經歷 - 部署與發佈指南
 
 本文說明如何讓別人使用這個 App，從本地執行到真正上架。
 
@@ -35,7 +35,7 @@ streamlit run app.py
    - 主檔案保持 `app.py`
    - 點 **Deploy!**
 
-3. 部署成功後，會得到一個類似 `https://yourname-hengyi-kunze.streamlit.app` 的網址。
+3. 部署成功後，會得到一個類似 `https://zchen114-vit-hengyi-kunze.streamlit.app` 的網址。
 
 4. 把這個網址分享給別人即可。
 
@@ -227,7 +227,7 @@ Streamlit 很難打包成單一執行檔，因為它需要啟動伺服器。
 
 1. **App 截圖**（首頁 + 聊天室畫面）
 2. **簡單文案範例**：
-   > 「最近在想感情、事業方向？\n試試這個完全免費的易經工具。\n直接輸入問題，不用搖銅板。\n手機也能「安裝」成 App 使用 👇\n\n連結：https://你的網址.streamlit.app」
+   > 「最近在想感情、事業方向？\n試試這個完全免費的易經工具。\n直接輸入問題，不用搖銅板。\n手機也能「安裝」成 App 使用 👇\n\n連結：https://zchen114-vit-hengyi-kunze.streamlit.app」
 
 3. **教學圖**：怎麼「加到主畫面」
 

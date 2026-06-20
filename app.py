@@ -1,5 +1,5 @@
 """
-恆易 · 坤澤
+洞察易生的經歷
 簡易易經卜卦 App - Streamlit 版本
 完全免費、無限卜卦、連續對話、無起卦隨機邏輯
 """
@@ -10,7 +10,7 @@ import random
 
 # ====================== 設定頁面 ======================
 st.set_page_config(
-    page_title="恆易 · 坤澤",
+    page_title="洞察易生的經歷",
     page_icon="☯",
     layout="centered",
     initial_sidebar_state="expanded"
@@ -269,7 +269,7 @@ def build_grok_prompt(category_key: str, question: str, name: str, preference: s
         "請用現代白話、務實且有同理心的方式解讀，並給出具體可執行的建議。"
     )
 
-    prompt = f"""你是一位精通《易經》的資深顧問，名字叫「坤澤」。
+    prompt = f"""你是一位精通《易經》的資深顧問，名字叫「洞察易生」。
 
 用戶資訊：
 - 姓名：{name}
@@ -337,12 +337,12 @@ with st.sidebar:
     st.markdown("**💡 解讀方式建議**")
     st.caption("有 SuperGrok 訂閱的話，強烈建議使用「SuperGrok 專業解讀」，品質明顯更好，且不額外花錢。")
 
-    st.caption("恆易 · 坤澤\n完全免費・無限使用")
+    st.caption("洞察易生的經歷\n完全免費・無限使用")
 
 # ====================== 主畫面 ======================
 def show_homepage():
     """顯示首頁"""
-    st.markdown('<div class="main-title">恆易 · 坤澤</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-title">洞察易生的經歷</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle">問心 · 觀象 · 得道</div>', unsafe_allow_html=True)
 
     # 歡迎與說明
@@ -371,7 +371,7 @@ def show_homepage():
             if st.session_state.current_category:
                 cat_name = CATEGORIES[st.session_state.current_category]['name']
             
-            submit_text = f"""【恆易·坤澤 親自解讀請求】
+            submit_text = f"""【洞察易生的經歷 親自解讀請求】
 分區：{cat_name}
 姓名：{st.session_state.user_name}
 偏好：{st.session_state.preference}
@@ -547,7 +547,7 @@ if st.session_state.current_category:
         if st.button("📥 匯出目前分區對話", use_container_width=True):
             messages = st.session_state.get(f"messages_{st.session_state.current_category}", [])
             if messages:
-                export_text = f"# 恆易 · 坤澤 - {CATEGORIES[st.session_state.current_category]['name']} 對話記錄\n\n"
+                export_text = f"# 洞察易生的經歷 - {CATEGORIES[st.session_state.current_category]['name']} 對話記錄\n\n"
                 export_text += f"使用者：{st.session_state.user_name}\n"
                 export_text += f"偏好：{st.session_state.preference}\n"
                 export_text += f"時間：{datetime.now().strftime('%Y-%m-%d %H:%M')}\n\n"
@@ -559,7 +559,7 @@ if st.session_state.current_category:
                 st.download_button(
                     "下載文字檔 (.txt)",
                     export_text,
-                    file_name=f"坤澤_{CATEGORIES[st.session_state.current_category]['name']}.txt",
+                    file_name=f"洞察易生_{CATEGORIES[st.session_state.current_category]['name']}.txt",
                     use_container_width=True
                 )
             else:
@@ -576,7 +576,7 @@ st.markdown(
 # ====================== 頁尾 ======================
 st.markdown(
     "<div style='text-align:center; color:#8B6642; font-size:0.8rem; margin-top:2rem;'>"
-    "恆易 · 坤澤 — 問則有應，誠則靈驗"
+    "洞察易生的經歷 — 問則有應，誠則靈驗"
     "</div>",
     unsafe_allow_html=True
 )

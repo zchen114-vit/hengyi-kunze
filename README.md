@@ -1,4 +1,4 @@
-# 恆易 · 坤澤
+# 洞察易生的經歷
 
 **簡易易經卜卦 App**  
 完全免費、無限次使用。純粹輸入問題，由「易經顧問」給予智慧解讀。
@@ -67,6 +67,6 @@ streamlit run app.py
 ## 版權與使用
 
 純粹個人使用與學習之用。
-「恆易 · 坤澤」—— 恆久不易，坤厚載物。
+「洞察易生的經歷」—— 洞察易經智慧，體悟人生經歷。
 
 Built directly in D:\Grok following zero-confirmation protocol.

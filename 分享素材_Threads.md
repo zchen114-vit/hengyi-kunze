@@ -1,7 +1,7 @@
-# 恆易 · 坤澤 - Threads / IG 分享素材（可直接使用）
+# 洞察易生的經歷 - Threads / IG 分享素材（可直接使用）
 
 ## 重要提醒
-- 把下方「（貼上你的網址）」替換成你部署後拿到的 Streamlit 網址
+- 把下方「https://zchen114-vit-hengyi-kunze.streamlit.app」替換成你部署後拿到的 Streamlit 網址
 - 第一張圖建議放 App 首頁截圖
 - 可以附上使用教學與常見問題.md 的連結
 
@@ -37,7 +37,7 @@
 
 很適合想安靜問問題的人。
 
-網址：（貼上你的網址）
+網址：https://zchen114-vit-hengyi-kunze.streamlit.app
 ```
 
 ### 版本 3（教怎麼安裝成 App）
@@ -56,7 +56,7 @@ Android：
 
 之後就會像一般 App 一樣開啟了。
 
-連結：（貼上你的網址）
+連結：https://zchen114-vit-hengyi-kunze.streamlit.app
 ```
 
 ### 版本 4（SuperGrok 優勢）
@@ -70,7 +70,7 @@ Android：
 
 完全免費，歡迎試試看：
 
-（貼上你的網址）
+https://zchen114-vit-hengyi-kunze.streamlit.app
 ```
 
 ---
@@ -108,7 +108,7 @@ Android：
 
 真的很適合想安靜問問題的人。
 
-網址：（貼上你的網址）
+網址：https://zchen114-vit-hengyi-kunze.streamlit.app
 ```
 
 ### 版本 3（教怎麼安裝）
