@@ -7,6 +7,7 @@
 import streamlit as st
 from datetime import datetime
 import random
+import json
 
 # ====================== 設定頁面 ======================
 st.set_page_config(
@@ -294,7 +295,7 @@ with st.sidebar:
         # 儲存到瀏覽器
         components.html(f"""
         <script>
-            localStorage.setItem('hengyi_name', '{name}');
+            localStorage.setItem('hengyi_name', {json.dumps(name)});
         </script>
         """, height=0)
 
@@ -309,7 +310,7 @@ with st.sidebar:
         st.session_state.preference = pref
         components.html(f"""
         <script>
-            localStorage.setItem('hengyi_pref', '{pref}');
+            localStorage.setItem('hengyi_pref', {json.dumps(pref)});
         </script>
         """, height=0)
 
@@ -520,7 +521,8 @@ def show_chatroom(category_key: str):
         if st.button("✅ 採用此回答並儲存", type="primary", disabled=not pasted.strip()):
             full_reply = pasted.strip()
             with st.chat_message("assistant"):
-                st.markdown(full_reply)
+                # Use st.text to avoid potential markdown rendering issues from pasted content
+                st.text(full_reply)
             st.session_state[msg_key].append({"role": "assistant", "content": full_reply})
             del st.session_state[pending_key]
             st.toast("已儲存 SuperGrok 的解讀", icon="📖")
