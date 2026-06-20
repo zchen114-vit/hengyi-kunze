@@ -33,7 +33,7 @@
 這個工具把所有對話都只存在**你自己手機**裡，
 開發者也看不到你問了什麼。
 
-直接輸入問題 → 選擇 SuperGrok 專業解讀（或快速內建）
+直接輸入問題，易經顧問將直接以傳統智慧回應
 
 很適合想安靜問問題的人。
 
@@ -59,18 +59,13 @@ Android：
 連結：https://zchen114-vit-hengyi-kunze.streamlit.app
 ```
 
-### 版本 4（SuperGrok 優勢）
+### 版本（純傳統易經智慧）
 ```
-因為我有 SuperGrok 訂閱，
-所以這個工具特別做了「直接把問題丟給 Grok 專業解讀」的功能。
+這個工具純粹使用傳統易經智慧直接回應問題。
 
-你不用自己想提示詞，我已經幫你寫好優化版本。
+沒有AI流程，適合想安靜問問題的人。
 
-想用傳統還是現代解讀也可以自己選。
-
-完全免費，歡迎試試看：
-
-https://zchen114-vit-hengyi-kunze.streamlit.app
+https://hengyi-kunze-kgtqlw8wg7yt9whmmehd5j.streamlit.app
 ```
 
 ---
@@ -83,8 +78,8 @@ https://zchen114-vit-hengyi-kunze.streamlit.app
 **有人問「這是真的起卦嗎？」**
 → 不是隨機起卦，而是直接針對你輸入的問題，用易經智慧給建議。適合想直接問生活問題的人。
 
-**有人問「要怎麼用 SuperGrok？」**
-→ 輸入問題後點「使用 SuperGrok 專業解讀」，複製提示詞去 grok.x.ai 問，再把回答貼回來即可。
+**有人問「怎麼得到回應？」**
+→ 直接輸入問題，易經顧問就會以傳統智慧回應。
 
 ---
 
@@ -104,7 +99,7 @@ https://zchen114-vit-hengyi-kunze.streamlit.app
 
 想用傳統還是現代解讀都可以自己選。
 
-直接輸入問題 → 選擇 SuperGrok 專業解讀（或快速內建）
+直接輸入問題，易經顧問將直接以傳統智慧回應
 
 真的很適合想安靜問問題的人。
 
